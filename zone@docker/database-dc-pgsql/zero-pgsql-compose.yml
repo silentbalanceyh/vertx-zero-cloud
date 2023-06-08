@@ -1,0 +1,14 @@
+version: "3.7"
+services:
+  pgsql:
+    container_name: pgsql
+    image: postgres:latest
+    privileged: true
+    # 权限要加，不然启动会告错
+    env_file:
+      - zero-pgsql.env
+    ports:
+      - 5432:5432
+    volumes:
+      - ./data:/var/lib/postgresql/data
+    restart: always

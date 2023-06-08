@@ -1,0 +1,9 @@
+Operator:
+https://raw.githubusercontent.com/pingcap/tidb-operator/master/manifests/crd.yaml
+Cluster:
+https://raw.githubusercontent.com/pingcap/tidb-operator/master/examples/basic/tidb-cluster.yaml
+Monitor:
+https://raw.githubusercontent.com/pingcap/tidb-operator/master/examples/basic/tidb-monitor.yaml
+Storage:
+https://raw.githubusercontent.com/pingcap/tidb-operator/master/examples/local-pv/local-volume-provisioner.yaml
+https://raw.githubusercontent.com/pingcap/tidb-operator/v1.3.6/manifests/local-dind/local-volume-provisioner.yaml

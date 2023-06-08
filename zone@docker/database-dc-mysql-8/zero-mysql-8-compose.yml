@@ -1,0 +1,33 @@
+version: '3.3'
+services:
+  mysql-database:
+    image: 'mysql:8.0.32'
+    container_name: 'mysql'
+    restart: always
+    ports:
+      - '3306:3306'
+    env_file:
+      - zero-mysql-8.env
+    volumes:
+      - '/etc/localtime:/etc/localtime:ro'                    # （MacOS兼容）同步宿主机日期时间到容器
+      # 三个目录位置更改：data, conf, logs
+      - './data:/var/lib/mysql'
+      - './conf:/etc/mysql/conf.d'
+      - './logs:/logs'
+      - './init:/docker-entrypoint-initdb.d/'
+    command:
+
+      # default-authentication-plugin=mysql_native_password   mysql5为mysql_native_password, 支持较好, mysql8为默认为caching_sha2_password, 部分旧软件不支持;
+      # character-set-server=utf8mb4                          默认创建新数据的新建字符集
+      # collation-server=utf8mb4_general_ci                   默认创建新数据的新建排序规则
+      # default-time-zone='+8:00'                             选择正8区
+      # max_connections=1000                                  设置最大连接数
+      # innodb_lock_wait_timeout=500                          innodb的dml操作的行级锁的等待时间
+      # --lower_case_table_names=1                            默认使用大小写敏感
+      --default-authentication-plugin=mysql_native_password
+      --character-set-server=utf8mb4
+      --collation-server=utf8mb4_general_ci
+      --default-time-zone='+8:00'
+      --max_connections=4096
+      --innodb_lock_wait_timeout=500
+

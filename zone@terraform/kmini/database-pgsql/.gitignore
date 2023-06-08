@@ -1,0 +1,5 @@
+initialize.sh
+.terraform
+.terraform.lock.hcl
+*tfstate*
+data

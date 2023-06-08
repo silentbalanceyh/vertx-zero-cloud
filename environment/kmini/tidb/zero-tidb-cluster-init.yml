@@ -1,0 +1,26 @@
+apiVersion: pingcap.com/v1alpha1
+kind: TidbInitializer
+metadata:
+  name: $ZC_TIDB-initializer
+  namespace: $ZC_TIDB
+spec:
+  image: tnir/mysqlclient
+  # imagePullPolicy: IfNotPresent
+  cluster:
+    name: $ZC_TIDB
+    namespace: $ZC_TIDB
+  initSql: |
+    # 初始化数据库
+    CREATE DATABASE $ZK_DB;
+    # create database app;
+    # initSqlConfigMap: tidb-initsql
+  passwordSecret: zero-tidb-secret
+  # permitHost: 172.6.5.8
+  # resources:
+  #   limits:
+  #     cpu: 1000m
+  #     memory: 500Mi
+  #   requests:
+  #     cpu: 100m
+  #     memory: 50Mi
+  timezone: "Asia/Shanghai"
